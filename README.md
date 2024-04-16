@@ -61,3 +61,13 @@
         Infer({ model: ComplexModel2, method: 'rejection', samples: 1 });
 
 
+1.3 Programozz be egy olyan modellt, ami kiszámolja, hogy mi annak a valószínűsége, hogy ha két kockával dobunk, akkor az összeg legalább 4 lesz!
+
+    var totalOutcomes = 6 * 6; // összes
+    var successfulOutcomes = 30; // kedvező 
+    
+    var probability = successfulOutcomes / totalOutcomes; // kedvező/összes
+    
+    console.log("Annak a valószínűsége, hogy ha két kockával dobunk, akkor az összeg legalább 4 lesz: " + probability);
+
+
