@@ -71,3 +71,35 @@
     console.log("Annak a valószínűsége, hogy ha két kockával dobunk, akkor az összeg legalább 4 lesz: " + probability);
 
 
+1.4 (King-Ace Paradox, bemelegítő) Tudjuk, hogy a klasszikus logikában a "Ha ász van a kezemben, akkor király van, vagy ha nincs ász a kezemben, akkor király van a kezemben" mondatból nem következik feltétlenül, hogy király van a kezemben (miért?), sőt, ha a mondatban szereplő "vagy"-ot kizáró vagy értelemében használjuk, akkor kifejezetten az következik belőle, hogy nincs király a kezemben. Írj programot, ami a helyzetet modellezi úgy, hogy a mondatbeli "vagy" jelentése néha "és" néha "vagy" néha "kizáró vagy". Vö.: The Cambridge Handbook of Computational Psychology, ed.: Ron Sun, 2008, Cambrigde, p. 137.
+
+
+    var mintaDVagy = function() {
+      var veletlen = randomInteger(1, 3);
+      if (veletlen === 1) {
+        return 'es';
+      } else if (veletlen === 2) {
+        return 'vagy';
+      } else {
+        return 'kizaro_vagy';
+      }
+    };
+    
+    var kiralyAszParadoxon = function() {
+      var vagyTipus = mintaDVagy();
+      
+      var vanAsz = flip(0.5);
+      var vanKiraly = flip(0.5);
+      
+      if (vagyTipus === 'es') {
+        return vanAsz && vanKiraly;
+      } else if (vagyTipus === 'vagy') {
+        return vanAsz || vanKiraly;
+      } else {
+        return vanAsz !== vanKiraly;
+      }
+    };
+    
+    var kiserlet = Infer({ method: 'enumerate' }, kiralyAszParadoxon);
+    print(kiserlet);
+
