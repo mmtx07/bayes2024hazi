@@ -135,5 +135,27 @@
     var dist = Infer({ model: model, method: 'enumerate' });
     print(JSON.stringify(dist, null, 2));
 
+3.4 Van egy beépített emberünk a Monty Hall/vos Savant szituációban, aki 50% százalékban helyesen mutogatja el nekünk a színfalak mögül, hogy melyik ajtó mögött van az autó. Szót fogadunk neki, és azt az ajtót választjuk, amit ő javasol. Még mindig érdemes-e azután váltani, hogy Monty megmutatot egy kecskét? A választ támasszuk alá webppl programmal!
+
+    var model = function() {
+        var doors = [1, 2, 3];
+        var car = uniformDraw(doors);
+        var initialChoice = uniformDraw(doors);
+      
+        var insider = flip(0.5) ? car : uniformDraw(doors.filter(function(door) { return door !== car; }));
+      
+        var montyOpens = uniformDraw(doors.filter(function(door) { return door !== initialChoice && door !== insider; }));
+      
+        var switchChoice = doors.filter(function(door) { return door !== initialChoice && door !== montyOpens; })[0];
+      
+        return { "Switch Wins": switchChoice === car };
+    };
+    
+    var dist = Infer({ model: model, method: 'enumerate' });
+    print(JSON.stringify(dist, null, 2));
+    
+    
+    // ebben az esetben így nem lesz érdemes váltani, 33,33% lesz az esélyünk megnyerni az autót
+
 
 
