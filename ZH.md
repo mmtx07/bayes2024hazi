@@ -116,3 +116,24 @@
     var probability = kiralyesnemkiraly / osszespar; // annak valószínűsége, hogy 1 királyt, 1 nem királyt húzunk
     
     console.log("Annak a valószínűsége, hogy 52 lapos francia kártyából 2 kártyát választva az egyik király, a másik nem király: " + probability);
+
+3.2 Legyen az X Y és Z valószínűség változó olyan, ami az {0, 1, 2, 3} számok közül választ egyenletes valószínűséggel. Legyen W = X + Y + Z, mi az X változó eloszlása, ha tudjuk, hogy W = 7? (Írj programot!)
+
+    var values = [0, 1, 2, 3];
+    
+    var model = function() {
+        var X = uniformDraw(values);
+        var Y = uniformDraw(values);
+        var Z = uniformDraw(values);
+        var W = X + Y + Z;
+      
+        condition(W === 7);
+      
+        return X;
+    };
+    
+    var dist = Infer({ model: model, method: 'enumerate' });
+    print(JSON.stringify(dist, null, 2));
+
+
+
