@@ -158,4 +158,42 @@
     // ebben az esetben így nem lesz érdemes váltani, 33,33% lesz az esélyünk megnyerni az autót
 
 
+4.2 Hörcsögünk súlyának mérési adatai: 28 g, 31 g, 44 g, 29 g. Lexikonbeli adatok: átlagos súly: 32 g, szórás: 10 g. Mi lesz az adatokkal való frissítés után a hörcsög súlyának eloszlása?
+
+    // A hörcsög súlyadatai
+    var adatok = [28, 31, 44, 29];
+    
+    // Lexikon adatok: átlagos súly és szórás
+    var lexikon_atlag = 32;
+    var lexikon_szoras = 10;
+    
+    
+    var modell = function() {
+      // Előzetes tudás a hörcsög súlyáról, a lexikon alapján
+      var atlag = gaussian(lexikon_atlag, lexikon_szoras);
+      
+      // megfigyelés után
+      map(function(d) {
+        observe(Gaussian({mu: atlag, sigma: lexikon_szoras}), d);
+      }, adatok);
+      
+      // Prediktív poszterior eloszlás a hörcsög súlyáról
+      var prediktiv = gaussian(atlag, lexikon_szoras);
+      
+      return {
+        Elozetes: lexikon_atlag,
+        Poszterior: atlag,
+        PoszteriorPrediktiv: prediktiv
+      };
+    };
+    
+    
+    var opcio = {method: 'SMC', particles: 2000, rejuvSteps: 5};
+    
+    
+    var output = Infer(opcio, modell);
+    
+    // Az eloszlások ábrázolása
+    viz.marginals(output);
+
 
