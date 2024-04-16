@@ -103,6 +103,34 @@
     var kiserlet = Infer({ method: 'enumerate' }, kiralyAszParadoxon);
     print(kiserlet);
 
+
+2.1.
+
+    Lemma problem_1 : forall A B C : Prop, A /\ (B \/ C) -> (A /\ B) \/ (A /\ C).
+    Proof.
+      intros A B C H.
+      destruct H as [HA [HB | HC]].
+      - left. split.
+        + exact HA.
+        + exact HB.
+      - right. split.
+        + exact HA.
+        + exact HC.
+    Qed.
+
+
+2.2.
+
+
+
+2.3.
+2.4.
+
+
+
+
+
+
 3.1 Írj programot, amelyik kiszámolja, hogy mi annak a valószínűsége, hogy 52 lapos francia kártyából 2 kártyát választva az egyik király, a másik nem király!
 
     var osszeskartya = 52;
