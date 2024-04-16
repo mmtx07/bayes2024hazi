@@ -220,7 +220,7 @@
 
 4.2 Hörcsögünk súlyának mérési adatai: 28 g, 31 g, 44 g, 29 g. Lexikonbeli adatok: átlagos súly: 32 g, szórás: 10 g. Mi lesz az adatokkal való frissítés után a hörcsög súlyának eloszlása?
 
-    // A hörcsög súlyadatai
+      // A hörcsög súlyadatai
     var adatok = [28, 31, 44, 29];
     
     // Lexikon adatok: átlagos súly és szórás
@@ -255,5 +255,4 @@
     
     // Az eloszlások ábrázolása
     viz.marginals(output);
-
 
