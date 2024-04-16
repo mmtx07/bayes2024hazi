@@ -103,3 +103,16 @@
     var kiserlet = Infer({ method: 'enumerate' }, kiralyAszParadoxon);
     print(kiserlet);
 
+3.1 Írj programot, amelyik kiszámolja, hogy mi annak a valószínűsége, hogy 52 lapos francia kártyából 2 kártyát választva az egyik király, a másik nem király!
+
+    var osszeskartya = 52;
+    var osszespar = osszeskartya * (osszeskartya - 1); // összes lehetséges pár
+    
+    var osszeskiraly = 4; // 4 király van egy pakliban
+    var osszesnemkiraly = osszeskartya - osszeskiraly; // azon kártyák száma, ami nem király
+    
+    var kiralyesnemkiraly = osszeskiraly * osszesnemkiraly; // azok a párok, ahol az egyik lap király, a másik nem király
+    
+    var probability = kiralyesnemkiraly / osszespar; // annak valószínűsége, hogy 1 királyt, 1 nem királyt húzunk
+    
+    console.log("Annak a valószínűsége, hogy 52 lapos francia kártyából 2 kártyát választva az egyik király, a másik nem király: " + probability);
