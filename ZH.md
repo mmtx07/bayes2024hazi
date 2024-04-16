@@ -121,6 +121,18 @@
 
 2.2.
 
+    Lemma problem_2 : forall A B C : Prop, ((B -> A) /\ (C -> A)) -> ((B \/ C -> A)).
+    Proof.
+      intros A B C H.
+      intros [HB | HC].
+      - destruct H as [HBA _].
+        apply HBA.
+        assumption.
+      - destruct H as [_ HCA].
+        apply HCA.
+        assumption.
+    Qed.
+
 
 
 2.3.
